@@ -26,7 +26,7 @@ describe 'ec2api::db::postgresql' do
 
       it { is_expected.to contain_postgresql__server__db('ec2api').with(
         :user     => 'ec2api',
-        :password => 'md5c530c33636c58ae83ca933f39319273e'
+        :password => 'pwd'
       )}
     end
 
@@ -49,7 +49,7 @@ describe 'ec2api::db::postgresql' do
 
       it { is_expected.to contain_postgresql__server__db('ec2api').with(
         :user     => 'ec2api',
-        :password => 'md5c530c33636c58ae83ca933f39319273e'
+        :password => 'pwd'
       )}
     end
 
