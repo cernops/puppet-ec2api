@@ -35,5 +35,5 @@ class ec2api::config (
   validate_hash($api_paste_ini_config)
 
   create_resources('ec2api_config', $ec2api_config)
-  create_resources('api_paste_ini_config', $api_paste_ini_config)
+  create_resources('ec2api_api_paste_ini', $api_paste_ini_config)
 }

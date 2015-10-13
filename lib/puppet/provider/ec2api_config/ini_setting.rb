@@ -1,6 +1,6 @@
 Puppet::Type.type(:ec2api_config).provide(
   :ini_setting,
-  :parent => Puppet::Type.type(:ini_setting).provider(:ruby)
+  :parent => Puppet::Type.type(:ni_setting).provider(:ruby)
 ) do
 
   def section
@@ -17,11 +17,6 @@ Puppet::Type.type(:ec2api_config).provide(
 
   def self.file_path
     '/etc/ec2api/ec2api.conf'
-  end
-
-  # added for backwards compatibility with older versions of inifile
-  def file_path
-    self.class.file_path
   end
 
 end

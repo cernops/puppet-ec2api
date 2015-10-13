@@ -1,4 +1,4 @@
-Puppet::Type.type(:ec2api_config).provide(
+Puppet::Type.type(:ec2api_api_paste_ini).provide(
   :ini_setting,
   :parent => Puppet::Type.type(:ini_setting).provider(:ruby)
 ) do
@@ -13,20 +13,6 @@ Puppet::Type.type(:ec2api_config).provide(
 
   def separator
     '='
-  end
-
-  def getvalue
-    if resource[:secret] == :true
-      dirpath = '/var/lib/puppet/tbag' # FIXME should be var
-      f = [dirpath, resource[:value]].join("/")
-      unless File.file?(f)
-        self.fail "teigisecret[\"#{resource[:value]}\"] does not exist"
-      end
-      contents = File.open(f, &:readline).chomp
-      return contents
-    else
-      return resource[:value]
-    end
   end
 
   def self.file_path

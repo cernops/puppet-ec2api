@@ -1,4 +1,4 @@
-Puppet::Type.newtype(:ec2api_config) do
+Puppet::Type.newtype(:ec2api_api_paste_ini) do
 
   ensurable
 

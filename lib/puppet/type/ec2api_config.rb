@@ -1,18 +1,23 @@
 Puppet::Type.newtype(:ec2api_config) do
 
-  ensurable
+  ensurable do
+    defaultvalues
+    defaultto :present
+  end
 
   newparam(:name, :namevar => true) do
-    desc 'Section/setting name to manage from /etc/ec2api/ec2api.conf'
+    desc 'Section/setting name to manage from ec2api.conf'
     newvalues(/\S+\/\S+/)
   end
 
   newproperty(:value) do
-    desc 'The value of the setting to be defined.'
-    munge do |value|
-      value = value.to_s.strip
-      value.capitalize! if value =~ /^(true|false)$/i
-      value
+    desc 'The value of the setting to be defined, or the key to be used in teigi.'
+    unless :secret == true
+      munge do |value|
+        value = value.to_s.strip
+        value.capitalize! if value =~ /^(true|false)$/i
+        value
+      end
     end
 
     def is_to_s( currentvalue )
